@@ -5,22 +5,16 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 
 
 public class MainActivity extends AppCompatActivity {
     TextView edittext;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,28 +23,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("frist", MODE_PRIVATE);
         String savedString = sharedPreferences.getString("sampleString", "");
         edittext.setText(savedString);
-
-        //--------------Json연습
-        Json json = new Json();
-        json.jsonadd();
-
-
-        JSONParser parser = new JSONParser();
-
-        try {
-            JSONObject object = (JSONObject) parser.parse(json.json);
-
-            JSONObject univ = (JSONObject) object.get("univ");
-            String drama = (String) univ.get("1");
-            String school = (String) univ.get("2");
-            Log.e("1 : ", String.valueOf(drama));
-            Log.e("2 : ", String.valueOf(school));
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
-        //-----------------------
+
         @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
